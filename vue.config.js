@@ -1,10 +1,10 @@
 module.exports = {
   css: {
-    extract: false
+    extract: false,
   },
   configureWebpack: {
     output: {
-      libraryExport: 'default'
-    }
-  }
-}
+      libraryExport: 'default',
+    },
+  },
+};

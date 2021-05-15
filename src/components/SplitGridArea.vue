@@ -5,34 +5,21 @@
     @after-leave="emitInParentGrid('leave-transition-end')"
   >
     <template v-if="render != null">
-      <div
-        v-if="render"
-        :key="`vsg_area_v-if_${uuid}`"
-        class="vsg_area"
-      >
+      <div v-if="render" :key="`vsg_area_v-if_${uuid}`" class="vsg_area">
         <slot />
       </div>
     </template>
     <div
-      v-else
-      v-show="show"
-      :key="`vsg_area_v-show_${uuid}`"
-      class="vsg_area"
-    >
+v-else v-show="show"
+:key="`vsg_area_v-show_${uuid}`" class="vsg_area">
       <slot />
     </div>
   </transition>
-  <div
-    v-else-if="render != null && render"
-    class="vsg_area"
-  >
+  <div v-else-if="render != null && render"
+class="vsg_area">
     <slot />
   </div>
-  <div
-    v-else-if="render == null"
-    v-show="show"
-    class="vsg_area"
-  >
+  <div v-else-if="render == null" v-show="show" class="vsg_area">
     <slot />
   </div>
 </template>
@@ -45,25 +32,25 @@ export default {
   props: {
     render: {
       type: Boolean,
-      default: null
+      default: null,
     },
     show: {
       type: Boolean,
-      default: true
+      default: true,
     },
     sizeUnit: {
       type: String,
-      default: 'fr'
+      default: 'fr',
     },
     sizeValue: {
       type: Number,
-      default: 1
+      default: 1,
     },
     transition: {
       type: Object,
       default: null,
-      validator: val => Object.keys(val).indexOf('name') > -1
-    }
+      validator: (val) => Object.keys(val).indexOf('name') > -1,
+    },
   },
   watch: {
     render(value) {
@@ -73,14 +60,14 @@ export default {
           uuid: this.uuid,
           size: {
             unit: this.sizeUnit,
-            value: this.sizeValue
-          }
+            value: this.sizeValue,
+          },
         });
       } else {
         this.emitInParentGrid('vsg:child.remove', {
           type: 'grid-area',
           uuid: this.uuid,
-          waitForTransition: this.transition != null
+          waitForTransition: this.transition != null,
         });
       }
     },
@@ -89,23 +76,23 @@ export default {
         type: 'grid-area',
         uuid: this.uuid,
         value,
-        waitForTransition: this.transition != null
+        waitForTransition: this.transition != null,
       });
     },
     sizeUnit(unit) {
       this.emitInParentGrid('vsg:child.resize', {
         size: { unit, value: this.sizeValue },
         type: 'grid-area',
-        uuid: this.uuid
+        uuid: this.uuid,
       });
     },
     sizeValue(value) {
       this.emitInParentGrid('vsg:child.resize', {
         size: { unit: this.sizeUnit, value },
         type: 'grid-area',
-        uuid: this.uuid
+        uuid: this.uuid,
       });
-    }
+    },
   },
   mounted() {
     this.emitInParentGrid('vsg:child.add', {
@@ -113,8 +100,8 @@ export default {
       uuid: this.uuid,
       size: {
         unit: this.sizeUnit,
-        value: this.sizeValue
-      }
+        value: this.sizeValue,
+      },
     });
   },
   methods: {
@@ -126,14 +113,13 @@ export default {
           return this.$parent.$parent;
         } else {
           throw new Error(
-            `[Vue Split Grid]: Either the parent or grandparent of a 'SplitGridArea' component should be a 'SplitGridComponent'.`
+            "[Vue Split Grid]: Either the parent or grandparent of a 'SplitGridArea' component should be a 'SplitGridComponent'."
           );
         }
       })();
       $parent.$emit(event, data);
-    }
-  }
+    },
+  },
 };
 </script>
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

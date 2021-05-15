@@ -5,7 +5,7 @@ import SplitGridGutterComponent from './components/SplitGridGutter.vue';
 const components = {
   SplitGrid: SplitGridComponent,
   SplitGridArea: SplitGridAreaComponent,
-  SplitGridGutter: SplitGridGutterComponent
+  SplitGridGutter: SplitGridGutterComponent,
 };
 
 // Declare install function executed by Vue.use()
@@ -21,7 +21,7 @@ function install(Vue) {
 
 // Create module definition for Vue.use()
 const plugin = {
-  install
+  install,
 };
 
 // Auto-install when vue is found (eg. in browser via <script> tag)
@@ -39,5 +39,5 @@ export default {
   install,
   SplitGrid: SplitGridComponent,
   SplitGridArea: SplitGridAreaComponent,
-  SplitGridGutter: SplitGridGutterComponent
+  SplitGridGutter: SplitGridGutterComponent,
 };
