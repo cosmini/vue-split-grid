@@ -1,17 +1,17 @@
 <template>
   <transition
-    v-if="transition != null"
+    v-if="transition !== null"
     v-bind="transition"
     @after-leave="$parent.$emit('leave-transition-end', 'leave-end')"
   >
-    <template v-if="render != null">
+    <template v-if="render !== null">
       <div
         v-if="render"
         :key="`vsg_area_v-if_${uuid}`"
         class="vsg_gutter"
         :class="{
           'vsg_gutter-horizontal': gridData.direction === 'horizontal',
-          'vsg_gutter-vertical': gridData.direction === 'vertical',
+          'vsg_gutter-vertical': gridData.direction === 'vertical'
         }"
         :style="{ cursor: gridData.cursor }"
       />
@@ -23,17 +23,17 @@
       class="vsg_gutter"
       :class="{
         'vsg_gutter-horizontal': gridData.direction === 'horizontal',
-        'vsg_gutter-vertical': gridData.direction === 'vertical',
+        'vsg_gutter-vertical': gridData.direction === 'vertical'
       }"
       :style="{ cursor: gridData.cursor }"
     />
   </transition>
   <div
-    v-else-if="render != null && render"
+    v-else-if="render !== null && render"
     class="vsg_gutter"
     :class="{
       'vsg_gutter-horizontal': gridData.direction === 'horizontal',
-      'vsg_gutter-vertical': gridData.direction === 'vertical',
+      'vsg_gutter-vertical': gridData.direction === 'vertical'
     }"
     :style="{ cursor: gridData.cursor }"
   />
@@ -43,13 +43,13 @@
     class="vsg_gutter"
     :class="{
       'vsg_gutter-horizontal': gridData.direction === 'horizontal',
-      'vsg_gutter-vertical': gridData.direction === 'vertical',
+      'vsg_gutter-vertical': gridData.direction === 'vertical'
     }"
     :style="{ cursor: gridData.cursor }"
   />
 </template>
 <script>
-import UuidMixin from '../mixins/uuid.js';
+import UuidMixin from '../mixins/uuid.js'
 
 export default {
   name: 'SplitGridGutter',
@@ -57,23 +57,23 @@ export default {
   props: {
     render: {
       type: Boolean,
-      default: null,
+      default: null
     },
     show: {
       type: Boolean,
-      default: true,
+      default: true
     },
     size: {
       type: Number,
       default() {
-        return this.gridData.gutterSize;
-      },
+        return this.gridData.gutterSize
+      }
     },
     transition: {
       type: Object,
       default: null,
-      validator: (val) => Object.keys(val).indexOf('name') > -1,
-    },
+      validator: (val) => Object.keys(val).indexOf('name') > -1
+    }
   },
   inject: ['gridData'],
   watch: {
@@ -84,15 +84,15 @@ export default {
           uuid: this.uuid,
           size: {
             value: this.size,
-            unit: 'px',
-          },
-        });
+            unit: 'px'
+          }
+        })
       } else {
         this.$parent.$emit('vsg:child.remove', {
           type: 'gutter',
           uuid: this.uuid,
-          waitForTransition: this.transition != null,
-        });
+          waitForTransition: this.transition !== null
+        })
       }
     },
     show(value) {
@@ -100,9 +100,9 @@ export default {
         type: 'gutter',
         uuid: this.uuid,
         value,
-        waitForTransition: this.transition != null,
-      });
-    },
+        waitForTransition: this.transition !== null
+      })
+    }
   },
   mounted() {
     this.$parent.$emit('vsg:child.add', {
@@ -110,11 +110,11 @@ export default {
       uuid: this.uuid,
       size: {
         value: this.size,
-        unit: 'px',
-      },
-    });
-  },
-};
+        unit: 'px'
+      }
+    })
+  }
+}
 </script>
 <style lang="scss" scoped>
 .vsg_gutter {
