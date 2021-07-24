@@ -14,13 +14,13 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     quotes: [2, 'single', 'avoid-escape'],
     'vue/html-closing-bracket-newline': 0,
-    'vue/max-attributes-per-line': [
-      1,
-      {
+    'vue/max-attributes-per-line': {
+      singleline: 1,
+      multiline: {
         max: 1,
-        allowFirstLine: true,
+        allowFirstLine: false,
       },
-    ],
+    },
     'array-callback-return': 'warn',
     'block-scoped-var': 'warn',
     complexity: ['warn', { max: 10 }],
@@ -45,4 +45,4 @@ module.exports = {
       },
     },
   ],
-};
+}
